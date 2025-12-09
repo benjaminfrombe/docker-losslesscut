@@ -11,8 +11,8 @@ ARG image_revision="1"
 FROM jlesage/baseimage-gui:debian-12-v4 AS extract-stage
 ARG TARGETPLATFORM
 ARG app_version
-ARG download_url_template="https://github.com/mifi/lossless-cut/releases/download/v${app_version}/LosslessCut-linux-#ARCH#.tar.bz2"
-#ARG download_url_template="https://github.com/mifi/lossless-cut/releases/latest/download/LosslessCut-linux-#ARCH#.tar.bz2"
+#ARG download_url_template="https://github.com/mifi/lossless-cut/releases/download/v${app_version}/LosslessCut-linux-#ARCH#.tar.bz2"
+ARG download_url_template="https://github.com/mifi/lossless-cut/releases/latest/download/LosslessCut-linux-#ARCH#.tar.bz2"
 
 # Fail early if TARGETPLATFORM isn't set
 RUN test -n "${TARGETPLATFORM}"
@@ -123,7 +123,8 @@ RUN LC_ALL="C.UTF-8" add-pkg \
 # some manual additions, mostly from  v3.47.1
 RUN LC_ALL="C.UTF-8" add-pkg \
       libgl1 \
-      libx11-xcb1
+      libx11-xcb1 \
+      librsvg2-bin
 #      #libxss1 \
 #      #libxtst6
 
